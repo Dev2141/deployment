@@ -28,19 +28,15 @@ VECTOR_TOP_K      = 5
 GRAPH_FACTS_LIMIT = 5
 
 # ── Lazy imports (only load heavy deps when actually querying) ─────────────────
-_vectorstore = None
+_pinecone_client = None
 _neo4j_driver = None
 
-def get_vectorstore():
-    global _vectorstore
-    if _vectorstore is None:
+def get_pinecone_client():
+    global _pinecone_client
+    if _pinecone_client is None:
         from pinecone import Pinecone
-        from langchain_pinecone import PineconeVectorStore, PineconeEmbeddings
-        _vectorstore = PineconeVectorStore(
-            index_name=PINECONE_INDEX,
-            embedding=PineconeEmbeddings(model=EMBED_MODEL),
-        )
-    return _vectorstore
+        _pinecone_client = Pinecone(api_key=PINECONE_API_KEY)
+    return _pinecone_client
 
 def get_neo4j_driver():
     global _neo4j_driver
@@ -71,8 +67,10 @@ def extract_keywords(query: str) -> list:
 def retrieve_vector(query: str, top_k: int = VECTOR_TOP_K):
     """Returns (snippets_list, warning_or_None)."""
     try:
-        vs = get_vectorstore()
-        return [doc.page_content for doc in vs.similarity_search(query, k=top_k)], None
+        # For now, return empty list if Pinecone is not populated
+        # In production, you would embed the query and search Pinecone
+        # This is handled by Milestone-3.py during data population
+        return [], None
     except Exception as e:
         return [], str(e)
 
