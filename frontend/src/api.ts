@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import type { QueryResponse, HealthResponse } from "./types";
 
 // Use environment variable for API URL, fallback to localhost for development
