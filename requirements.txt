@@ -10,8 +10,8 @@ gunicorn==21.2.0
 # Neo4j (for graph database)
 neo4j==5.14.0
 
-# Pinecone (for vector database)
-pinecone-client==3.0.0
+# Pinecone (for vector database) - use latest stable
+pinecone==5.0.1
 
 # HTTP client
 requests==2.31.0
@@ -19,6 +19,3 @@ requests==2.31.0
 # Environment variables
 python-dotenv==1.0.0
 
-# ── Optional: For advanced features ────────────────────────────────────────
-# pandas==2.1.0  # Uncomment if needed for Milestone scripts
-# numpy==1.24.0  # Uncomment if needed for Milestone scripts

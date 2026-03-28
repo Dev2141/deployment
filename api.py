@@ -34,8 +34,8 @@ _neo4j_driver = None
 def get_pinecone_client():
     global _pinecone_client
     if _pinecone_client is None:
-        from pinecone import Pinecone
-        _pinecone_client = Pinecone(api_key=PINECONE_API_KEY)
+        from pinecone import Pinecone as PineconeClient
+        _pinecone_client = PineconeClient(api_key=PINECONE_API_KEY)
     return _pinecone_client
 
 def get_neo4j_driver():
