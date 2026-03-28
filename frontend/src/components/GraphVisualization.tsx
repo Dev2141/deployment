@@ -352,8 +352,6 @@ export default function GraphVisualization({ graph }: Props) {
             onEngineStop={() => fgRef.current?.zoomToFit(400, 40)}
             d3AlphaDecay={0.015}
             d3VelocityDecay={0.25}
-            // Repulsion to spread nodes more
-            d3Force="charge"
           />
         )}
 
